@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
@@ -26,6 +26,10 @@ function App() {
     }
     setColor(hexColor);
   }
+
+  useEffect(() => {
+    colorType === 'hex' ? randomHex() : randomRgb();
+  }, [colorType]);
 
   return (
     <div style={{ background: color }} className='w-[100vw] h-[100vh]'>
