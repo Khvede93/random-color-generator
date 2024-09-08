@@ -7,10 +7,14 @@ function App() {
 
   const colorCodeLength = 6;
 
+  function getRandomNumber(length) {
+    return Math.floor(Math.random() * length);
+  }
+
   function randomRgb() {
-    const r = Math.floor(Math.random() * 255);
-    const g = Math.floor(Math.random() * 255);
-    const b = Math.floor(Math.random() * 255);
+    const r = getRandomNumber(255);
+    const g = getRandomNumber(255);
+    const b = getRandomNumber(255);
     setColor(`rgb(${r},${g},${b})`);
   }
 
@@ -18,30 +22,31 @@ function App() {
     const hex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F'];
     let hexColor = '#';
     for (let i = 0; i < colorCodeLength; i++) {
-      hexColor += hex[Math.floor(Math.random() * hex.length)];
+      hexColor += hex[getRandomNumber(hex.length)];
     }
     setColor(hexColor);
   }
 
-  function handleGenerate() {}
-
   return (
-    <div
-      style={{ background: color }}
-      className='w-[100vw] h-[100vh] bg-red-400 flex items-start justify-center gap-1 pt-1'
-    >
-      <button className='btn' onClick={() => setColorType('hex')}>
-        Create HEX Color
-      </button>
-      <button className='btn' onClick={() => setColorType('rgb')}>
-        Create RGB Color
-      </button>
-      <button
-        className='btn'
-        onClick={colorType === 'hex' ? randomHex : randomRgb}
-      >
-        Generate Random Color
-      </button>
+    <div style={{ background: color }} className='w-[100vw] h-[100vh]'>
+      <div className='flex items-start justify-center gap-1 pt-1'>
+        <button className='btn' onClick={() => setColorType('hex')}>
+          Create HEX Color
+        </button>
+        <button className='btn' onClick={() => setColorType('rgb')}>
+          Create RGB Color
+        </button>
+        <button
+          className='btn'
+          onClick={colorType === 'hex' ? randomHex : randomRgb}
+        >
+          Generate Random Color
+        </button>
+      </div>
+      <div className='flex justify-center items-center mt-12 text-white flex-col'>
+        <h3>{colorType}</h3>
+        <h1>{color}</h1>
+      </div>
     </div>
   );
 }
