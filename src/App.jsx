@@ -43,9 +43,11 @@ function App() {
           Generate Random Color
         </button>
       </div>
-      <div className='flex justify-center items-center mt-12 text-white flex-col'>
-        <h3>{colorType}</h3>
-        <h1>{color}</h1>
+      <div className='flex flex-col justify-center items-center mt-12 p-5 bg-gray-600 rounded-lg text-white'>
+        <h3 className='text-xl font-semibold mb-2'>
+          {colorType.toUpperCase()}
+        </h3>
+        <h1 className='text-4xl font-bold'>{color}</h1>
       </div>
     </div>
   );
